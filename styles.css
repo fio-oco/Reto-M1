@@ -64,7 +64,7 @@ li a {
 }
 .footer {
   font-size: 12px; /* 1em = 12px */
-  position: relative; /* Position the navbar */
+  position: absolute; /* Position the navbar */
   left: 0; /* Place the navbar at the left side */
   bottom: 0; /* Place the navbar at the bottom of the page */
   width: 100%; /* Full width */
@@ -79,6 +79,8 @@ li a {
   flex-wrap: wrap; /* Wrap the elements to the next line */
   max-width: 75%; /* Adjust as needed */
   margin: 0 auto; /* Center the row */
+  gap: 115px; /* adds a gap between the images */
+  justify-content: space-around; /* adds margin between each item */
 }
 
 .column {
