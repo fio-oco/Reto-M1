@@ -3,22 +3,78 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Search Page</title>
-    <link rel="stylesheet" href="style.css" />
+
+    <title>Main Page</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    
   </head>
   <body>
     <header class="header">
-      <h1 id="title">My Travel Bucket List</h1>
-      <button id="pageLinks"><a href="search-page.html">Search page</a></button>
+      <ul class="navbar">
+        <li><a href="search"></a>Search</li>
+        <li><a href="bucket-list"></a>Bucket List</li>
+        <li><a href="about"></a>About</li>
+      </ul>
     </header>
+    <main class="content">
+      <h1 id="title">My Travel Bucket List</h1>
 
+      <button id="pageLinks"><a href="search-page.html">Search page</a></button>
+      <div class="row">
+        <div class="column">
+          <img
+            src="https://images.pexels.com/photos/1448055/pexels-photo-1448055.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="first-image"
+            style="width: 100%"
+          />
+        </div>
+        <div class="column">
+          <img
+            src="https://images.pexels.com/photos/1612461/pexels-photo-1612461.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="second-image"
+            style="width: 100%"
+          />
+        </div>
+        <div class="column">
+          <img
+            id="image"
+            src="https://images.pexels.com/photos/1157255/pexels-photo-1157255.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="third-image"
+            style="width: 100%"
+          />
+        </div>
+      </div>
+      <div class="container">
+        <p id="description">
+          Have you been day dreaming about your next big trip? My travel bucket
+          list is a simple page to help you think about the places you'd love to
+          travel to and get you started on your planning. Choose the top 3
+          countries on your travel bucket list for information on the capital,
+          official languages and some links to websites with useful information
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
+          repudiandae dolor quisquam modi in ex veniam mollitia quam dolorum
+          quasi ea facilis, esse earum aperiam amet. Totam vel aliquam tenetur.
+        </p>
+      </div>
+    </main>
 
+    <footer class="footer">
+      <p>
+        This page was created by Asier Valtierra and Fiona O'Connell as part of
+        the Code4Jobs Fullstack Web Development bootcamp in Bilbao, September
+        2023.
+      </p>
 
-    <div class="container">
-
-      <p id="description"></p>
-
-    </div>
+      <div>API: <a href="https://restcountries.com/">restcountries.com</a></div>
+    </footer>
 
     <script type="text/javascript" src="script.js"></script>
   </body>
