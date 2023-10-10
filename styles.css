@@ -1,0 +1,89 @@
+* {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.header {
+  display: flex; /* Use flexbox to align elements horizontally */
+  justify-content: flex-end; /* Move the navbar to the right */
+  align-items: center; /* Center items vertically */
+  background-color: #333;
+  height: 60px; /* Adjust the height as needed */
+}
+
+ul.navbar {
+  list-style: none;
+  display: flex; /* Display list items horizontally */
+  color: white;
+}
+
+li {
+  margin-right: 20px; /* Add space between list items */
+}
+
+li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 16px;
+}
+
+#pageLinks {
+  color: black;
+  font-size: 15px;
+  line-height: 10px;
+  padding: 7px;
+  border-radius: 8px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  background-image: linear-gradient(to right, white);
+  border: 2px solid black;
+  display: inline-block;
+}
+
+#description {
+  text-align: center; /* center */
+  font-weight: normal; /* bold */
+  font-style: normal; /* italic */
+  font-variant: normal; /* small caps */
+  text-transform: none; /* uppercase/lowercase */
+  font-size: 15px; /* 1em = 12px */
+  line-height: 20px; /* 1.2em = 14px */
+  font-family: "Montserrat", sans-serif;
+  padding: 10x; /* 1em = 12px */
+  background-image: linear-gradient(to right, white); /* gradient */
+  display: block; /* inline */
+  margin: 0 auto;
+  white-space: pre-wrap; /* wrap */
+}
+.footer {
+  font-size: 12px; /* 1em = 12px */
+  position: relative; /* Position the navbar */
+  left: 0; /* Place the navbar at the left side */
+  bottom: 0; /* Place the navbar at the bottom of the page */
+  width: 100%; /* Full width */
+  background-color: #333; /* Black background color */
+  color: white; /* White text color */
+  padding: 20px 0px; /* Some padding */
+}
+.row {
+  display: flex; /* Use flexbox to align elements horizontally */
+  justify-content: space-between; /* Add space between columns */
+  align-items: center; /* Optional: Center images vertically */
+  flex-wrap: wrap; /* Wrap the elements to the next line */
+  max-width: 75%; /* Adjust as needed */
+  margin: 0 auto; /* Center the row */
+}
+
+.column {
+  flex-basis: calc(
+    25% - 10px
+  ); /* Adjust the width of each column and the spacing between them */
+  margin-bottom: 10px; /* Add margin for spacing between rows */
+}
