@@ -1,11 +1,13 @@
 * {
-  font-family: "Montserrat", sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  text-align: center;
+  font-family: "Montserrat", sans-serif; /* Use the Montserrat font */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove padding */
+  box-sizing: border-box; /* Add border box to all elements */
+  text-align: center; /* center */
 }
-
+h1 {
+  font-weight: bolder; /* bold */
+}
 .header {
   display: flex; /* Use flexbox to align elements horizontally */
   justify-content: flex-end; /* Move the navbar to the right */
@@ -13,40 +15,35 @@
   background-color: #333;
   height: 60px; /* Adjust the height as needed */
 }
-
 ul.navbar {
   list-style: none;
   display: flex; /* Display list items horizontally */
   color: white;
 }
-
 li {
   margin-right: 20px; /* Add space between list items */
 }
-
 li a {
-  color: white;
-  text-decoration: none;
-  padding: 10px 16px;
+  color: white; /* White text color */
+  text-decoration: none; /* Remove underline from links */
+  padding: 10px 16px; /* Add some padding */
 }
-
 #pageLinks {
-  color: black;
-  font-size: 15px;
-  line-height: 10px;
-  padding: 7px;
-  border-radius: 8px;
-  font-family: "Montserrat", sans-serif;
-  font-weight: normal;
-  text-decoration: none;
-  font-style: normal;
-  font-variant: normal;
-  text-transform: none;
-  background-image: linear-gradient(to right, white);
-  border: 2px solid black;
-  display: inline-block;
+  color: black; /* Black text color */
+  font-size: 15px; /* 1em = 12px */
+  line-height: 10px; /* 1.2em = 14px */
+  padding: 7px; /* 1em = 12px */
+  border-radius: 8px; /* rounded corners */
+  font-family: "Montserrat", sans-serif; /* Use the Montserrat font */
+  font-weight: normal; /* bold */
+  text-decoration: none; /* Remove underline from links */
+  font-style: normal; /* italic */
+  font-variant: normal; /* small caps */
+  text-transform: none; /* uppercase/lowercase */
+  background-image: linear-gradient(to right, white); /* gradient */
+  border: 2px solid black; /* border */
+  display: inline-block; /* inline */
 }
-
 #description {
   text-align: center; /* center */
   font-weight: normal; /* bold */
@@ -82,7 +79,6 @@ li a {
   gap: 115px; /* adds a gap between the images */
   justify-content: space-around; /* adds margin between each item */
 }
-
 .column {
   flex-basis: calc(
     25% - 10px

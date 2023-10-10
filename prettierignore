@@ -1,0 +1,28 @@
+# Dependency directories
+node_modules/
+bower_components/
+
+# Compilation and dist output
+dist/
+build/
+out/
+.next/
+
+# Config files
+*.config.js
+.env*
+
+# Logs
+*.log
+
+# Minified files
+*.min.js
+*.min.css
+
+# Auto generated files
+yarn.lock
+package-lock.json
+
+# Other
+public/
+coverage/
