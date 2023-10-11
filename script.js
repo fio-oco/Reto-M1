@@ -58,12 +58,12 @@ let getRandomElements = function (sourceArray, numberElements) {
                     `
 
                   //  document.getElementById(countryFlag).appendChild(id="flags">src = ${countryInfo.flags.png})
+                   // document.getElementById(countryFlag).appendChild(id="flags">src = ${countryInfo.flags.png})
                 })
                 /* <p id="flags">${countryInfo.flags.png}</p>
                 <p id="googleMaps">${countryInfo.maps.googleMaps}</p>
                 <p id="openStreetMaps">${countryInfo.maps.openStreetMaps}</p> */
             .catch((error) => console.error(error));
-            
         })
     });
     
@@ -74,8 +74,6 @@ let btn = document.querySelector("#search");
 btn.addEventListener("click", function () {
   getRandomElements(allCountriesNames, 3);
 });
-
-//Gets 3 random countries and puts their names in buttons. Click on the button and 
 
 document.getElementById("storeCountry").addEventListener("click", function () {
   if (selectedCountry != null && selectedCountry != undefined) {
