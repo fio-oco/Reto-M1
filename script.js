@@ -36,7 +36,6 @@ let getRandomElements = function (sourceArray, numberElements) {
     document.getElementById(country).addEventListener("click", function () {
       let countryInfo;
       let countryFlag = document.createElement("img");
-      let countryGoogleMaps = document.createElement("a");
       //   let map = undefined;
       fetch(`https://restcountries.com/v3.1/name/${country}`)
         .then((response) => response.json())
@@ -48,7 +47,7 @@ let getRandomElements = function (sourceArray, numberElements) {
           }
           let countryInfo = countryData[0];
           selectedCountry = countryInfo.name.common;
-          document.querySelector("#countryInfo").innerHTML = `
+          document.querySelector(".card").innerHTML = `
                     <h3 id= "countryName">${countryInfo.name.common}</h3>
                     <p id="infoParagraph">Region:${countryInfo.region}</p>
                     <p id="latlng">Latitude and Longitude: ${
@@ -60,13 +59,9 @@ let getRandomElements = function (sourceArray, numberElements) {
                     ).join(", ")}</p>
                     <p id="population">Population: ${countryInfo.population}</p>
                     <img id="flags" src="${countryInfo.flags.png}"/>
-                    <a id="googleMaps" href= "${
-                      countryInfo.maps.googleMaps
-                    }></a>
-                    <a id="openStreetMaps" href= "${
-                      countryInfo.maps.openStreetMaps
-                    }/></a>
                     `;
+//<img id="flags" src="${countryInfo.flags.png}"/>
+        //    document.getElementById('#flagImage').appendChild()
           map = L.map("map").setView(countryInfo.latlng, 5);
           L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
             maxZoom: 19,
