@@ -13,40 +13,45 @@ let getRandomElements = function (sourceArray, numberElements) {
     let resultButton = document.createElement("button");
     let resultInfo = document.createElement("p");
 
-        let country = sourceArray[Math.floor(Math.random()*sourceArray.length)]
-        resultButton.id = country;
-        resultButton.innerHTML = country;
-        //let countryName= country   
-        //the link for fetch isn't working because I haven't declared countryName yet, need to figure out how to do that without changing the value of country
-        
-        document.getElementById("buttons").appendChild(resultButton);
-    
-         document.getElementById(country).addEventListener("click", function(){
-            let countryInfo;
-            fetch(`https://restcountries.com/v3.1/name/${encodeURIComponent(country)}`)
-                .then(response => response.json())
-                .then((countryData) => {
-                    console.log(countryData);
-                    let countryInfo = countryData[0];
+    let country = sourceArray[Math.floor(Math.random() * sourceArray.length)];
+    resultButton.id = country;
+    resultButton.innerHTML = country;
+    //let countryName= country
+    //the link for fetch isn't working because I haven't declared countryName yet, need to figure out how to do that without changing the value of country
 
-                    document.querySelector('#countryInfo').innerHTML += `
+    document.getElementById("buttons").appendChild(resultButton);
+
+    document.getElementById(country).addEventListener("click", function () {
+      let countryInfo;
+      fetch(
+        `https://restcountries.com/v3.1/name/${encodeURIComponent(country)}`
+      )
+        .then((response) => response.json())
+        .then((countryData) => {
+          console.log(countryData);
+          let countryInfo = countryData[0];
+
+          document.querySelector("#countryInfo").innerHTML += `
                     <h3 id= "countryName">${countryInfo.name.common}</h3>
                     <p id="infoParagraph">Region:${countryInfo.region}</p>
-                    <p id="latlng">Latitude and Longitude: ${countryInfo.latlng}</p>
+                    <p id="latlng">Latitude and Longitude: ${
+                      countryInfo.latlng
+                    }</p>
                     <p id="capital">Capital City: ${countryInfo.capital}</p>
-                    <p id="languages">Official Languages: ${Object.values(countryInfo.languages).join(", ")}</p>
+                    <p id="languages">Official Languages: ${Object.values(
+                      countryInfo.languages
+                    ).join(", ")}</p>
                     <p id="population">Population: ${countryInfo.population}</p>
-                    `
-                })
-                /* <p id="flags">${countryInfo.flags.png}</p>
+                    `;
+        })
+        /* <p id="flags">${countryInfo.flags.png}</p>
                 <p id="googleMaps">${countryInfo.maps.googleMaps}</p>
                 <p id="openStreetMaps">${countryInfo.maps.openStreetMaps}</p> */
-            .catch((error) => console.error(error));
-            
-        })
-    };
-    
-    // document.getElementById("countriesButtons").appendChild(`${result}`);
+        .catch((error) => console.error(error));
+    });
+  }
+
+  // document.getElementById("countriesButtons").appendChild(`${result}`);
 };
 
 let btn = document.querySelector("#search");
