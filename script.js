@@ -19,7 +19,7 @@ let favouriteCountries;
 
 let getRandomElements = function (sourceArray, numberElements) {
   let results = [];
-
+  document.getElementById("buttons").innerHTML = "";
   for (let i = 0; i < numberElements; i++) {
     // results.push(sourceArray[Math.floor(Math.random()*sourceArray.length)]);
     let resultTitle = document.createElement("h3");
@@ -37,13 +37,18 @@ let getRandomElements = function (sourceArray, numberElements) {
       let countryInfo;
       let countryFlag = document.createElement("img");
       let countryGoogleMaps = document.createElement("a");
-
+      //   let map = undefined;
       fetch(`https://restcountries.com/v3.1/name/${country}`)
         .then((response) => response.json())
         .then((countryData) => {
+          console.log(map);
+          console.log(document.querySelector("#map"));
+          if (document.querySelector("#map").innerHTML !== "") {
+            map.remove();
+          }
           let countryInfo = countryData[0];
           selectedCountry = countryInfo.name.common;
-          document.querySelector("#countryInfo").innerHTML += `
+          document.querySelector("#countryInfo").innerHTML = `
                     <h3 id= "countryName">${countryInfo.name.common}</h3>
                     <p id="infoParagraph">Region:${countryInfo.region}</p>
                     <p id="latlng">Latitude and Longitude: ${
@@ -62,12 +67,20 @@ let getRandomElements = function (sourceArray, numberElements) {
                       countryInfo.maps.openStreetMaps
                     }/></a>
                     `;
-          let map = L.map("map").setView(countryInfo.latlng, 5);
+          map = L.map("map").setView(countryInfo.latlng, 5);
           L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
             maxZoom: 19,
             attribution:
               '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
           }).addTo(map);
+
+          let marker = L.marker(countryInfo.latlng).addTo(map);
+          /* let popup = L.popup()
+        .setLatLng(countryInfo.latlng)
+        .setContent("Country Info PopUp")
+        .openOn(map);
+
+        //  marker.bindPopup(`<b>${countryInfo.name.common}<b>`).openPopup(); */
         })
         .catch((error) => console.error(error));
     });
