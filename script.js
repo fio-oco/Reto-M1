@@ -1,9 +1,6 @@
 let apiURLCountries = "https://restcountries.com/v3.1/all";
 // prettier-ignore
 let allCountriesNames = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia & Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre & Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts & Nevis","St Lucia","St Vincent","St. Lucia","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Turks & Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
-<<<<<<< HEAD
-//let countriesWithLetter =
-=======
 let countriesWithLetter = [];
 
 document.getElementById("letterInput").addEventListener("change", function () {
@@ -17,7 +14,6 @@ document.getElementById("letterInput").addEventListener("change", function () {
   getRandomElements(countriesWithLetter, 3);
 });
 
->>>>>>> dev
 let selectedCountry;
 let favouriteCountries;
 
@@ -34,17 +30,9 @@ let getRandomElements = function (sourceArray, numberElements) {
     resultButton.id = country;
     resultButton.innerHTML = country;
     selectedCountry = country;
-<<<<<<< HEAD
-    //let countryName= country
-    //the link for fetch isn't working because I haven't declared countryName yet, need to figure out how to do that without changing the value of country
 
     document.getElementById("buttons").appendChild(resultButton);
 
-=======
-
-    document.getElementById("buttons").appendChild(resultButton);
-
->>>>>>> dev
     document.getElementById(country).addEventListener("click", function () {
       let countryInfo;
       let countryFlag = document.createElement("img");
@@ -67,14 +55,6 @@ let getRandomElements = function (sourceArray, numberElements) {
                     ).join(", ")}</p>
                     <p id="population">Population: ${countryInfo.population}</p>
                     <img id="flags" src="${countryInfo.flags.png}"/>
-<<<<<<< HEAD
-                    `;
-          // document.getElementById(countryFlag).appendChild(id="flags">src = ${countryInfo.flags.png})
-        })
-        /* <p id="flags">${countryInfo.flags.png}</p>
-                <p id="googleMaps">${countryInfo.maps.googleMaps}</p>
-                <p id="openStreetMaps">${countryInfo.maps.openStreetMaps}</p> */
-=======
                     <a id="googleMaps" href= "${
                       countryInfo.maps.googleMaps
                     }></a>
@@ -88,17 +68,10 @@ let getRandomElements = function (sourceArray, numberElements) {
             attribution:
               '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
           }).addTo(map);
-        
         })
->>>>>>> dev
         .catch((error) => console.error(error));
     });
   }
-
-<<<<<<< HEAD
-  // document.getElementById("countriesButtons").appendChild(`${result}`);
-=======
->>>>>>> dev
 };
 
 let btn = document.querySelector("#search");
@@ -118,12 +91,38 @@ document.getElementById("storeCountry").addEventListener("click", function () {
     favouriteCountries.push(JSON.stringify(selectedCountry));
     localStorage.setItem("selectedCountry", JSON.stringify(favouriteCountries));
 
-<<<<<<< HEAD
-    alert(`"${selectedCountry}" has been added to your bucketlist.`); //issue here because selected country will always be the last option generated with the loop, not the button selected
-=======
-    alert(`"${selectedCountry}" has been added to your bucketlist.`); 
->>>>>>> dev
+    alert(`"${selectedCountry}" has been added to your bucketlist.`);
   } else {
     alert("Please select a country first.");
   }
 });
+
+function removeFavoriteCountry(countryName) {
+  let favouriteCountries = localStorage.getItem("selectedCountries");
+  if (favouriteCountries) {
+    favouriteCountries = JSON.parse(favouriteCountries);
+
+    // Find and remove the selected country by name
+    const index = favouriteCountries.indexOf(countryName);
+    if (index > -1) {
+      favouriteCountries.splice(index, 1);
+      localStorage.setItem(
+        "selectedCountries",
+        JSON.stringify(favouriteCountries)
+      );
+      displayFavouriteCountries(); // Update the displayed list
+    }
+  }
+}
+
+// Example: Add an event listener to remove a favorite country (you need to add this dynamically when creating the "Remove" buttons)
+document
+  .getElementById("favouriteCountries")
+  .addEventListener("click", function (event) {
+    if (event.target.tagName === "BUTTON") {
+      const countryName = event.target.parentNode.textContent
+        .replace("Remove", "")
+        .trim();
+      removeFavoriteCountry(countryName);
+    }
+  });
