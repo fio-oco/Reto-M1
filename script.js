@@ -13,7 +13,6 @@ document.getElementById("letterInput").addEventListener("change", function () {
   console.log(countriesWithLetter);
   getRandomElements(countriesWithLetter, 3);
 });
-//addevent listener to search for all the strings that start with th evalue of the input
 
 let selectedCountry;
 let favouriteCountries;
@@ -23,7 +22,6 @@ let getRandomElements = function (sourceArray, numberElements) {
 
   for (let i = 0; i < numberElements; i++) {
     // results.push(sourceArray[Math.floor(Math.random()*sourceArray.length)]);
-    // result = results[i];
     let resultTitle = document.createElement("h3");
     let resultButton = document.createElement("button");
     let resultInfo = document.createElement("p");
@@ -32,8 +30,6 @@ let getRandomElements = function (sourceArray, numberElements) {
     resultButton.id = country;
     resultButton.innerHTML = country;
     selectedCountry = country;
-    //let countryName= country
-    //the link for fetch isn't working because I haven't declared countryName yet, need to figure out how to do that without changing the value of country
 
     document.getElementById("buttons").appendChild(resultButton);
 
@@ -66,23 +62,18 @@ let getRandomElements = function (sourceArray, numberElements) {
                       countryInfo.maps.openStreetMaps
                     }/></a>
                     `;
-          var map = L.map("map").setView(countryInfo.latlng, 5);
+          let map = L.map("map").setView(countryInfo.latlng, 5);
           L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
             maxZoom: 19,
             attribution:
               '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
           }).addTo(map);
-          // document.getElementById(countryFlag).appendChild(id="flags">src = ${countryInfo.flags.png})
+        
         })
-
-        /* <p id="flags">${countryInfo.flags.png}</p>
-                <p id="googleMaps">${countryInfo.maps.googleMaps}</p>
-                <p id="openStreetMaps">${countryInfo.maps.openStreetMaps}</p> */
         .catch((error) => console.error(error));
     });
   }
 
-  // document.getElementById("countriesButtons").appendChild(`${result}`);
 };
 
 let btn = document.querySelector("#search");
@@ -102,7 +93,7 @@ document.getElementById("storeCountry").addEventListener("click", function () {
     favouriteCountries.push(JSON.stringify(selectedCountry));
     localStorage.setItem("selectedCountry", JSON.stringify(favouriteCountries));
 
-    alert(`"${selectedCountry}" has been added to your bucketlist.`); //issue here because selected country will always be the last option generated with the loop, not the button selected
+    alert(`"${selectedCountry}" has been added to your bucketlist.`); 
   } else {
     alert("Please select a country first.");
   }
