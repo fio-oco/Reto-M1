@@ -85,3 +85,7 @@ li a {
   ); /* Adjust the width of each column and the spacing between them */
   margin-bottom: 10px; /* Add margin for spacing between rows */
 }
+
+#map {
+  height: 240px;
+}
