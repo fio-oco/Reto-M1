@@ -13,11 +13,24 @@ let getRandomElements = function (sourceArray, numberElements) {
     let resultButton = document.createElement("button");
     let resultInfo = document.createElement("p");
 
-    let country = sourceArray[Math.floor(Math.random() * sourceArray.length)];
-    resultButton.id = country;
-    resultButton.innerHTML = country;
-    //let countryName= country
-    //the link for fetch isn't working because I haven't declared countryName yet, need to figure out how to do that without changing the value of country
+        let country = sourceArray[Math.floor(Math.random()*sourceArray.length)]
+        resultButton.id = country;
+        resultButton.innerHTML = country;
+        //let countryName= country   
+        //the link for fetch isn't working because I haven't declared countryName yet, need to figure out how to do that without changing the value of country
+        
+        document.getElementById("buttons").appendChild(resultButton);
+    
+         document.getElementById(country).addEventListener("click", function(){
+            let countryInfo;
+            let countryFlag = document.createElement("img");
+            let countryGoogleMaps = document.createElement("a");
+
+            fetch(`https://restcountries.com/v3.1/name/${encodeURIComponent(country)}`)
+                .then(response => response.json())
+                .then((countryData) => {
+                    console.log(countryData);
+                    let countryInfo = countryData[0];
 
     document.getElementById("buttons").appendChild(resultButton);
 
@@ -42,42 +55,27 @@ let getRandomElements = function (sourceArray, numberElements) {
                       countryInfo.languages
                     ).join(", ")}</p>
                     <p id="population">Population: ${countryInfo.population}</p>
-                    `;
-        })
-        /* <p id="flags">${countryInfo.flags.png}</p>
+                    `
+
+                  //  document.getElementById(countryFlag).appendChild(id="flags">src = ${countryInfo.flags.png})
+                })
+                /* <p id="flags">${countryInfo.flags.png}</p>
                 <p id="googleMaps">${countryInfo.maps.googleMaps}</p>
                 <p id="openStreetMaps">${countryInfo.maps.openStreetMaps}</p> */
-        .catch((error) => console.error(error));
+            .catch((error) => console.error(error));
+            
+        })
     });
-  }
-
-  // document.getElementById("countriesButtons").appendChild(`${result}`);
-};
+    
+// document.getElementById("countriesButtons").appendChild(`${result}`);
+});
 
 let btn = document.querySelector("#search");
 btn.addEventListener("click", function () {
   getRandomElements(allCountriesNames, 3);
 });
 
-/*let randomCountryNames = getRandomElements(allCountriesNames, 3);
-console.log(randomCountryNames);*/
-
-/*function addElement(){
-    let allCountriesNames = []
-}*/
-
-/* fetch(apiURLCountries)
-    .then((response) => response.json())
-    .then((countriesData) => {
-        console.log(countriesData);
-        allCountriesNames = countriesData.results.map(country) => {
-         
-        }
-name.common
-    }
-
-    )
- */
+//Gets 3 random countries and puts their names in buttons. Click on the button and 
 
 document.getElementById("storeCountry").addEventListener("click", function () {
   if (selectedCountry != null && selectedCountry != undefined) {
