@@ -37,15 +37,15 @@ let getRandomElements = function (sourceArray, numberElements) {
       let countryInfo;
       let countryFlag = document.createElement("img");
       let countryGoogleMaps = document.createElement("a");
-    //   let map = undefined;
+      //   let map = undefined;
       fetch(`https://restcountries.com/v3.1/name/${country}`)
         .then((response) => response.json())
         .then((countryData) => {
-            console.log(map);
-            console.log(document.querySelector("#map"));
-            if(document.querySelector("#map").innerHTML !== ""){
-                map.remove();
-            }
+          console.log(map);
+          console.log(document.querySelector("#map"));
+          if (document.querySelector("#map").innerHTML !== "") {
+            map.remove();
+          }
           let countryInfo = countryData[0];
           selectedCountry = countryInfo.name.common;
           document.querySelector("#countryInfo").innerHTML = `
@@ -85,7 +85,6 @@ let getRandomElements = function (sourceArray, numberElements) {
         .catch((error) => console.error(error));
     });
   }
-
 };
 
 let btn = document.querySelector("#search");
@@ -105,8 +104,38 @@ document.getElementById("storeCountry").addEventListener("click", function () {
     favouriteCountries.push(JSON.stringify(selectedCountry));
     localStorage.setItem("selectedCountry", JSON.stringify(favouriteCountries));
 
-    alert(`"${selectedCountry}" has been added to your bucketlist.`); 
+    alert(`"${selectedCountry}" has been added to your bucketlist.`);
   } else {
     alert("Please select a country first.");
   }
 });
+
+function removeFavoriteCountry(countryName) {
+  let favouriteCountries = localStorage.getItem("selectedCountries");
+  if (favouriteCountries) {
+    favouriteCountries = JSON.parse(favouriteCountries);
+
+    // Find and remove the selected country by name
+    const index = favouriteCountries.indexOf(countryName);
+    if (index > -1) {
+      favouriteCountries.splice(index, 1);
+      localStorage.setItem(
+        "selectedCountries",
+        JSON.stringify(favouriteCountries)
+      );
+      displayFavouriteCountries(); // Update the displayed list
+    }
+  }
+}
+
+// Example: Add an event listener to remove a favorite country (you need to add this dynamically when creating the "Remove" buttons)
+document
+  .getElementById("favouriteCountries")
+  .addEventListener("click", function (event) {
+    if (event.target.tagName === "BUTTON") {
+      const countryName = event.target.parentNode.textContent
+        .replace("Remove", "")
+        .trim();
+      removeFavoriteCountry(countryName);
+    }
+  });
