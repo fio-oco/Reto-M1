@@ -3,30 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>my-travel-bucketlist-search-page</title>
-
     <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>search-page</title>
   </head>
   <body>
-    
     <header class="header">
       <ul class="navbar">
         <li class="button"><a href="main-page.html">Home</a></li>
+        <li class="button"><a href="bucket-list.html">Bucket List</a></li>
       </ul>
-      <li class="button"><a href="bucket-list.html">Bucket List</a></li>
       </ul>
     </header>
-    <header>
       <h1>My Travel Bucket List</h1>
 
-      <button id="pageLinks"><a href="main-page.html">Home Page</a></button>
 
     </header>
     <div id="letterInput">
-      <input type="text" id="letterInput" name= letterInput placeholder="Please enter a letter of the alphabet."/>
+      <input
+        type="text"
+        id="letterInput"
+        name="letterInput"
+        placeholder="Please enter a letter of the alphabet."
+      />
     </div>
 
-    <div id= "randomCountrysButton">
+    <div id="randomCountriesButton">
       <label for="randomButton">Where could you go?</label>
       <!-- //<input type=
 
@@ -36,13 +44,12 @@
 
     <div id="buttons"></div>
     <div id="countryInfo"></div>
-    <div id= "map"></div>
+    <div id="map"></div>
     <button id="storeCountry">Store Country</button>
 
     <footer>
-      Sources: 
-      API: <a href="https://restcountries.com" ></a>
-      Map: <a href ="" placeholder = "Leaflet JS Library"></a>
+      Sources: API: <a href="https://restcountries.com"></a> Map:
+      <a href="" placeholder="Leaflet JS Library"></a>
     </footer>
 
     <script type="text/javascript" src="script.js"></script>
