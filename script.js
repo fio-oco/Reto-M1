@@ -14,29 +14,32 @@ let getRandomElements = function(sourceArray, numberElements){
         let country = sourceArray[Math.floor(Math.random()*sourceArray.length)]
         resultButton.id = country;
         resultButton.innerHTML = country;
-        //let countryName= country   
+        countryID= country;  
         //the link for fetch isn't working because I haven't declared countryName yet, need to figure out how to do that without changing the value of country
         
         document.getElementById("buttons").appendChild(resultButton);
     
          document.getElementById(country).addEventListener("click", function(){
-            fetch(`https://restcountries.com/v3.1/name/${countryName}`)
+            fetch(`https://restcountries.com/v3.1/name/${encodeURIComponent(countryID)}`)
                 .then(response => response.json())
                 .then((countryData) => {
                     console.log(countryData);
 
+                    //let countryGoogleMaps = JSON.stringify(countryInfo.maps.googleMaps);
+
+                    let countryInfo = countryData[i]
                     document.querySelector('#countryInfo').innerHTML += `
-                    <h3 id= "countryName">${countryData.name.common}</h3>
-                    <p id="region">${countryData.region}</p>
-                    <p id="languages">${countryData.languages}</p>
-                    <p id="flags">${countryData.flags.png}</p>
-                    <p id="population">${countryData.population}</p>
-                    <p id="timezone""${countryData.timezones}</p>
-                    <p id="latlng">${countryData.latlng}</p>
-                    <p id="googleMaps">${countryData.maps.googleMaps}</p>
-                    <p id="openStreetMaps">${countryData.maps.openStreetMaps}</p>
+                    <h3 id= "countryName">${countryInfo.name.common}</h3>
+                    <p id="region">${countryInfo.region}</p>
+                    <p id="languages">${countryInfo.languages}</p>
+                    <img id="flags" src=${countryInfo.flags.png}/>
+                    <p id="population">${countryInfo.population}</p>
+                    <p id="timezone"${countryInfo.timezones}</p>
+                    <p id="latlng">${countryInfo.latlng}</p>
+                    <p id="googleMaps">${countryInfo.maps.googleMaps}</p>   
+                    <p id="openStreetMaps">${countryInfo.maps.openStreetMaps}</p>
                     `
-                
+                //links to maps should be <a> but don't know how to inlcude them
                 })
             .catch((error) => console.error(error));
             
