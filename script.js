@@ -23,6 +23,9 @@ let getRandomElements = function (sourceArray, numberElements) {
     
          document.getElementById(country).addEventListener("click", function(){
             let countryInfo;
+            let countryFlag = document.createElement("img");
+            let countryGoogleMaps = document.createElement("a");
+
             fetch(`https://restcountries.com/v3.1/name/${encodeURIComponent(country)}`)
                 .then(response => response.json())
                 .then((countryData) => {
@@ -37,6 +40,8 @@ let getRandomElements = function (sourceArray, numberElements) {
                     <p id="languages">Official Languages: ${Object.values(countryInfo.languages).join(", ")}</p>
                     <p id="population">Population: ${countryInfo.population}</p>
                     `
+
+                    document.getElementById(countryFlag).appendChild(id="flags">src = ${countryInfo.flags.png})
                 })
                 /* <p id="flags">${countryInfo.flags.png}</p>
                 <p id="googleMaps">${countryInfo.maps.googleMaps}</p>
@@ -46,7 +51,7 @@ let getRandomElements = function (sourceArray, numberElements) {
         })
     };
     
-    // document.getElementById("countriesButtons").appendChild(`${result}`);
+// document.getElementById("countriesButtons").appendChild(`${result}`);
 };
 
 let btn = document.querySelector("#search");
@@ -54,25 +59,7 @@ btn.addEventListener("click", function () {
   getRandomElements(allCountriesNames, 3);
 });
 
-/*let randomCountryNames = getRandomElements(allCountriesNames, 3);
-console.log(randomCountryNames);*/
-
-/*function addElement(){
-    let allCountriesNames = []
-}*/
-
-/* fetch(apiURLCountries)
-    .then((response) => response.json())
-    .then((countriesData) => {
-        console.log(countriesData);
-        allCountriesNames = countriesData.results.map(country) => {
-         
-        }
-name.common
-    }
-
-    )
- */
+//Gets 3 random countries and puts their names in buttons. Click on the button and 
 
 document.getElementById("storeCountry").addEventListener("click", function () {
   if (selectedCountry != null && selectedCountry != undefined) {
