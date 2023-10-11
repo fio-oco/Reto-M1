@@ -1,7 +1,9 @@
 let apiURLCountries = "https://restcountries.com/v3.1/all";
 // prettier-ignore
 let allCountriesNames = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia & Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre & Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts & Nevis","St Lucia","St Vincent","St. Lucia","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Turks & Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
+//let countriesWithLetter = 
 let selectedCountry;
+let favouriteCountries;
 
 let getRandomElements = function (sourceArray, numberElements) {
   let results = [];
@@ -16,6 +18,7 @@ let getRandomElements = function (sourceArray, numberElements) {
         let country = sourceArray[Math.floor(Math.random()*sourceArray.length)]
         resultButton.id = country;
         resultButton.innerHTML = country;
+        selectedCountry =country;
         //let countryName= country   
         //the link for fetch isn't working because I haven't declared countryName yet, need to figure out how to do that without changing the value of country
         
@@ -26,12 +29,11 @@ let getRandomElements = function (sourceArray, numberElements) {
             let countryFlag = document.createElement("img");
             let countryGoogleMaps = document.createElement("a");
 
-            fetch(`https://restcountries.com/v3.1/name/${encodeURIComponent(country)}`)
+            fetch(`https://restcountries.com/v3.1/name/${country}`)
                 .then(response => response.json())
                 .then((countryData) => {
-                    console.log(countryData);
                     let countryInfo = countryData[0];
-
+                    selectedCountry = countryInfo.name.common;
                     document.querySelector('#countryInfo').innerHTML += `
                     <h3 id= "countryName">${countryInfo.name.common}</h3>
                     <p id="infoParagraph">Region:${countryInfo.region}</p>
@@ -39,8 +41,8 @@ let getRandomElements = function (sourceArray, numberElements) {
                     <p id="capital">Capital City: ${countryInfo.capital}</p>
                     <p id="languages">Official Languages: ${Object.values(countryInfo.languages).join(", ")}</p>
                     <p id="population">Population: ${countryInfo.population}</p>
+                    <img id="flags" src="${countryInfo.flags.png}"/>
                     `
-
                    // document.getElementById(countryFlag).appendChild(id="flags">src = ${countryInfo.flags.png})
                 })
                 /* <p id="flags">${countryInfo.flags.png}</p>
@@ -48,6 +50,7 @@ let getRandomElements = function (sourceArray, numberElements) {
                 <p id="openStreetMaps">${countryInfo.maps.openStreetMaps}</p> */
             .catch((error) => console.error(error));
         })
+            
     };
     
 // document.getElementById("countriesButtons").appendChild(`${result}`);
@@ -58,20 +61,20 @@ btn.addEventListener("click", function () {
   getRandomElements(allCountriesNames, 3);
 });
 
-document.getElementById("storeCountry").addEventListener("click", function () {
-  if (selectedCountry != null && selectedCountry != undefined) {
-    console.log(selectedCountry);
-    let previousCountry = localStorage.getItem("selectedCountry");
-    if (previousCountry == null) {
-      previousCountry = [];
-    } else {
-      previousCountry = JSON.parse(previousCountry);
-    }
-    previousCountry.push(JSON.stringify(selectedCountry));
-    localStorage.setItem("selectedCountry", JSON.stringify(previousCountry));
+            document.getElementById("storeCountry").addEventListener("click", function () {
+            if (selectedCountry != null && selectedCountry != undefined) {
+                console.log(selectedCountry);
+                let favouriteCountries = localStorage.getItem("selectedCountry");
+                if (favouriteCountries == null) {
+                favouriteCountries = [];
+                } else {
+                favouriteCountries = JSON.parse(favouriteCountries);
+                }
+                favouriteCountries.push(JSON.stringify(selectedCountry));
+                localStorage.setItem("selectedCountry", JSON.stringify(favouriteCountries));
 
-    alert(`"${selectedCountry.name.common}" has been stored in local storage.`);
-  } else {
-    alert("Please select a country first.");
-  }
-});
+                alert(`"${selectedCountry}" has been added to your bucketlist.`); //issue here because selected country will always be the last option generated with the loop, not the button selected
+            } else {
+                alert("Please select a country first.");
+            }
+            });
