@@ -3,6 +3,13 @@ let apiURLCountries = "https://restcountries.com/v3.1/all";
 let allCountriesNames = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia & Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre & Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts & Nevis","St Lucia","St Vincent","St. Lucia","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Turks & Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
 let countriesWithLetter = [];
 
+document.addEventListener("DOMContentLoaded", function () {
+  if (document.documentElement.classList.contains("bucket-list")) {
+    let ul = document.getElementById("favouriteList");
+    displaySelectedCountries();
+  }
+});
+
 document.getElementById("letterInput").addEventListener("change", function () {
   let letter = document.getElementById("letterInput").value;
   console.log(letter);
@@ -98,15 +105,34 @@ document.getElementById("storeCountry").addEventListener("click", function () {
     }
     favouriteCountries.push(JSON.stringify(selectedCountry));
     localStorage.setItem("selectedCountry", JSON.stringify(favouriteCountries));
-
     alert(`"${selectedCountry}" has been added to your bucketlist.`);
   } else {
     alert("Please select a country first.");
   }
 });
 
-function removeFavoriteCountry(countryName) {
-  let favouriteCountries = localStorage.getItem("selectedCountries");
+function displaySelectedCountries() {
+  let favouriteCountries = localStorage.getItem("selectedCountry");
+  if (favouriteCountries) {
+    favouriteCountries = JSON.parse(favouriteCountries);
+    let ul = document.getElementById("favouriteList");
+    ul.innerHTML = "";
+    favouriteCountries.forEach((countryName) => {
+      const li = document.createElement("li");
+      li.textContent = countryName;
+      const button = document.createElement("button");
+      button.textContent = "Remove";
+      button.addEventListener("click", function () {
+        removeFavouriteList(countryName);
+        displaySelectedCountries();
+      });
+      li.appendChild(button);
+      ul.appendChild(li);
+    });
+  }
+}
+function removeFavouriteList(countryName) {
+  let favouriteCountries = localStorage.getItem("selectedCountry");
   if (favouriteCountries) {
     favouriteCountries = JSON.parse(favouriteCountries);
 
@@ -115,22 +141,10 @@ function removeFavoriteCountry(countryName) {
     if (index > -1) {
       favouriteCountries.splice(index, 1);
       localStorage.setItem(
-        "selectedCountries",
+        "selectedCountry",
         JSON.stringify(favouriteCountries)
       );
-      displayFavouriteCountries(); // Update the displayed list
+      displaySelectedCountries(); // Update the displayed list
     }
   }
 }
-
-// Example: Add an event listener to remove a favorite country (you need to add this dynamically when creating the "Remove" buttons)
-document
-  .getElementById("favouriteCountries")
-  .addEventListener("click", function (event) {
-    if (event.target.tagName === "BUTTON") {
-      const countryName = event.target.parentNode.textContent
-        .replace("Remove", "")
-        .trim();
-      removeFavoriteCountry(countryName);
-    }
-  });
