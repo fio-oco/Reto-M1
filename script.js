@@ -53,7 +53,7 @@ let getRandomElements = function (sourceArray, numberElements) {
             map.remove();
           }
           let countryInfo = countryData[0];
-          selectedCountry = countryInfo.name.common;
+          selectedCountry = countryInfo;
           document.querySelector(".card").innerHTML = `
                     <h3 id= "countryName">${countryInfo.name.common}</h3>
                     <p id="infoParagraph">Region:${countryInfo.region}</p>
@@ -105,7 +105,9 @@ document.getElementById("storeCountry").addEventListener("click", function () {
     }
     favouriteCountries.push(JSON.stringify(selectedCountry));
     localStorage.setItem("selectedCountry", JSON.stringify(favouriteCountries));
-    alert(`"${selectedCountry}" has been added to your bucketlist.`);
+    alert(
+      `"${selectedCountry.name.common}" has been added to your bucketlist.`
+    );
   } else {
     alert("Please select a country first.");
   }
@@ -113,38 +115,55 @@ document.getElementById("storeCountry").addEventListener("click", function () {
 
 function displaySelectedCountries() {
   let favouriteCountries = localStorage.getItem("selectedCountry");
-  if (favouriteCountries) {
+  if (favouriteCountries && favouriteCountries.length > 2) {
     favouriteCountries = JSON.parse(favouriteCountries);
     let ul = document.getElementById("favouriteList");
     ul.innerHTML = "";
-    favouriteCountries.forEach((countryName) => {
+    favouriteCountries.forEach((country) => {
+      country = JSON.parse(country);
+      console.log(country);
+
       const li = document.createElement("li");
-      li.textContent = countryName;
+      li.innerHTML = ` <h2 id= "savedCountryName">${country.name.common}</h2>
+      <img id="savedFlags" src="${country.flags.png}"/>
+            `;
       const button = document.createElement("button");
-      button.textContent = "Remove";
+      button.textContent = "remove";
+      button.style.fontSize = "1rem";
+      button.style.cursor = "pointer";
+      button.style.marginLeft = "1rem";
       button.addEventListener("click", function () {
-        removeFavouriteList(countryName);
+        removeFavouriteList(country);
         displaySelectedCountries();
       });
       li.appendChild(button);
       ul.appendChild(li);
     });
+  } else {
+    document.getElementById("favouriteList").innerHTML =
+      "You have not added any countries to your bucketlist yet.";
+    document.getElementById("favouriteList").style.marginTop = "2rem";
   }
 }
-function removeFavouriteList(countryName) {
+
+function removeFavouriteList(country) {
   let favouriteCountries = localStorage.getItem("selectedCountry");
   if (favouriteCountries) {
     favouriteCountries = JSON.parse(favouriteCountries);
 
-    // Find and remove the selected country by name
-    const index = favouriteCountries.indexOf(countryName);
+    const countryName = country.name.common;
+    const index = favouriteCountries.findIndex((c) => {
+      const parsedCountry = JSON.parse(c);
+      return parsedCountry.name.common === countryName;
+    });
+
     if (index > -1) {
       favouriteCountries.splice(index, 1);
       localStorage.setItem(
         "selectedCountry",
         JSON.stringify(favouriteCountries)
       );
-      displaySelectedCountries(); // Update the displayed list
+      displaySelectedCountries();
     }
   }
 }

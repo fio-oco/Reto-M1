@@ -13,60 +13,66 @@
     <title>Main Page</title>
   </head>
   <body>
-    <header class="header">
-      <ul class="navbar">
-        <li class="button"><a href="search-page.html">Search</a></li>
-        <li class="storeButton">
-          <a id="storeCountry" href="bucket-list.html">Bucket List</a>
-        </li>
-      </ul>
-    </header>
-    <main class="content">
-      <h1 id="title">My Travel Bucket List</h1>
-      <div class="row">
-        <div class="column">
-          <img
-            src="https://images.pexels.com/photos/1448055/pexels-photo-1448055.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            alt="first-image"
-            style="width: 100%"
-          />
-        </div>
-        <div class="column">
-          <img
-            src="https://images.pexels.com/photos/1612461/pexels-photo-1612461.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            alt="second-image"
-            style="width: 100%"
-          />
-        </div>
-        <div class="column">
-          <img
-            id="image"
-            src="https://images.pexels.com/photos/1157255/pexels-photo-1157255.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            alt="third-image"
-            style="width: 100%"
-          />
-        </div>
+    <div id="page-container">
+      <div id="content-wrap">
+        <header class="header">
+          <ul class="navbar">
+            <li class="button"><a href="search-page.html">Search</a></li>
+            <li class="storeButton">
+              <a id="storeCountry" href="bucket-list.html">Bucket List</a>
+            </li>
+          </ul>
+        </header>
+        <main class="content">
+          <h1 id="title">My Travel Bucket List</h1>
+          <div class="row">
+            <div class="column">
+              <img
+                src="https://images.pexels.com/photos/1448055/pexels-photo-1448055.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                alt="first-image"
+                style="width: 100%"
+              />
+            </div>
+            <div class="column">
+              <img
+                src="https://images.pexels.com/photos/1612461/pexels-photo-1612461.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                alt="second-image"
+                style="width: 100%"
+              />
+            </div>
+            <div class="column">
+              <img
+                id="image"
+                src="https://images.pexels.com/photos/1157255/pexels-photo-1157255.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                alt="third-image"
+                style="width: 100%"
+              />
+            </div>
+          </div>
+          <div class="container">
+            <p id="description">
+              Have you been day dreaming about your next big trip? My travel
+              bucket list is a simple page to help you think about the places
+              you'd love to travel to and get you started on your planning.
+              Choose the top 3 countries on your travel bucket list for
+              information on the capital, official languages and some links to
+              websites with useful information
+            </p>
+          </div>
+        </main>
       </div>
-      <div class="container">
-        <p id="description">
-          Have you been day dreaming about your next big trip? My travel bucket
-          list is a simple page to help you think about the places you'd love to
-          travel to and get you started on your planning. Choose the top 3
-          countries on your travel bucket list for information on the capital,
-          official languages and some links to websites with useful information
+
+      <footer class="footer">
+        <p>
+          This page was created by Asier Valtierra and Fiona O'Connell as part
+          of the Code4Jobs Fullstack Web Development bootcamp in Bilbao,
+          September 2023.
         </p>
-      </div>
-    </main>
-
-    <footer class="footer">
-      <p>
-        This page was created by Asier Valtierra and Fiona O'Connell as part of
-        the Code4Jobs Fullstack Web Development bootcamp in Bilbao, September
-        2023.
-      </p>
-      <div>API: <a href="https://restcountries.com/">restcountries.com</a></div>
-    </footer>
-
+        <div>
+          API: <a href="https://restcountries.com/">restcountries.com</a>
+        </div>
+      </footer>
+    </div>
     <script type="text/javascript" src="script.js"></script>
   </body>
 </html>
