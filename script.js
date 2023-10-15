@@ -65,7 +65,10 @@ let getRandomElements = function (sourceArray, numberElements) {
                       countryInfo.languages
                     ).join(", ")}</p>
                     <p id="population">Population: ${countryInfo.population}</p>
-                    <img id="flags" src="${countryInfo.flags.png}"/>
+                    <img id="flags" src="${countryInfo.flags.png}"/><br>
+                    <a class="links" href="https://www.lonelyplanet.com/${country.toLowerCase()}" target="_blank">Get planning! Take a look at Lonely Planet.</a><br>
+                    <a class="links" href="https://www.nationalgeographic.com/travel/destination/${country.toLowerCase()}" target="_blank">Or maybe National Geographic..</a><br>
+                    <a class="links" href="https://en.wikipedia.org/wiki/${country}" target="_blank">Or for some general information Wikipedia</a><br>
                     `;
 //<img id="flags" src="${countryInfo.flags.png}"/>
         //    document.getElementById('#flagImage').appendChild()
@@ -77,12 +80,9 @@ let getRandomElements = function (sourceArray, numberElements) {
           }).addTo(map);
 
           let marker = L.marker(countryInfo.latlng).addTo(map);
-          /* let popup = L.popup()
-        .setLatLng(countryInfo.latlng)
-        .setContent("Country Info PopUp")
-        .openOn(map);
+          marker.bindTooltip(`Your dream destination!`).openTooltip();
 
-        //  marker.bindPopup(`<b>${countryInfo.name.common}<b>`).openPopup(); */
+          map.on('click', onMapClick);
         })
         .catch((error) => console.error(error));
     });
