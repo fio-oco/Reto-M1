@@ -74,6 +74,8 @@ let getRandomElements = function (sourceArray, numberElements) {
                       countryInfo.maps.openStreetMaps
                     }/></a>
                     `;
+          //<img id="flags" src="${countryInfo.flags.png}"/>
+          //    document.getElementById('#flagImage').appendChild()
           map = L.map("map").setView(countryInfo.latlng, 5);
           L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
             maxZoom: 19,
