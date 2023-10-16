@@ -43,7 +43,6 @@ let getRandomElements = function (sourceArray, numberElements) {
     document.getElementById(country).addEventListener("click", function () {
       let countryInfo;
       let countryFlag = document.createElement("img");
-      let countryGoogleMaps = document.createElement("a");
       //   let map = undefined;
       fetch(`https://restcountries.com/v3.1/name/${country}`)
         .then((response) => response.json())
@@ -55,7 +54,7 @@ let getRandomElements = function (sourceArray, numberElements) {
           }
           let countryInfo = countryData[0];
           selectedCountry = countryInfo;
-          document.querySelector("#countryInfo").innerHTML = `
+          document.querySelector(".card").innerHTML = `
                     <h3 id= "countryName">${countryInfo.name.common}</h3>
                     <p id="infoParagraph">Region:${countryInfo.region}</p>
                     <p id="latlng">Latitude and Longitude: ${
@@ -66,16 +65,13 @@ let getRandomElements = function (sourceArray, numberElements) {
                       countryInfo.languages
                     ).join(", ")}</p>
                     <p id="population">Population: ${countryInfo.population}</p>
-                    <img id="flags" src="${countryInfo.flags.png}"/>
-                    <a id="googleMaps" href= "${
-                      countryInfo.maps.googleMaps
-                    }></a>
-                    <a id="openStreetMaps" href= "${
-                      countryInfo.maps.openStreetMaps
-                    }/></a>
+                    <img id="flags" src="${countryInfo.flags.png}"/><br>
+                    <a class="links" href="https://www.lonelyplanet.com/${country.toLowerCase()}" target="_blank">Get planning! Take a look at Lonely Planet.</a><br>
+                    <a class="links" href="https://www.nationalgeographic.com/travel/destination/${country.toLowerCase()}" target="_blank">Or maybe National Geographic..</a><br>
+                    <a class="links" href="https://en.wikipedia.org/wiki/${country}" target="_blank">Or for some general information Wikipedia</a><br>
                     `;
-          //<img id="flags" src="${countryInfo.flags.png}"/>
-          //    document.getElementById('#flagImage').appendChild()
+//<img id="flags" src="${countryInfo.flags.png}"/>
+        //    document.getElementById('#flagImage').appendChild()
           map = L.map("map").setView(countryInfo.latlng, 5);
           L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
             maxZoom: 19,
@@ -84,12 +80,9 @@ let getRandomElements = function (sourceArray, numberElements) {
           }).addTo(map);
 
           let marker = L.marker(countryInfo.latlng).addTo(map);
-          /* let popup = L.popup()
-        .setLatLng(countryInfo.latlng)
-        .setContent("Country Info PopUp")
-        .openOn(map);
+          marker.bindTooltip(`Your dream destination!`).openTooltip();
 
-        //  marker.bindPopup(`<b>${countryInfo.name.common}<b>`).openPopup(); */
+          map.on('click', onMapClick);
         })
         .catch((error) => console.error(error));
     });
