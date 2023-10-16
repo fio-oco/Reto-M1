@@ -70,8 +70,8 @@ let getRandomElements = function (sourceArray, numberElements) {
                     <a class="links" href="https://www.nationalgeographic.com/travel/destination/${country.toLowerCase()}" target="_blank">Or maybe National Geographic..</a><br>
                     <a class="links" href="https://en.wikipedia.org/wiki/${country}" target="_blank">Or for some general information Wikipedia</a><br>
                     `;
-//<img id="flags" src="${countryInfo.flags.png}"/>
-        //    document.getElementById('#flagImage').appendChild()
+          //<img id="flags" src="${countryInfo.flags.png}"/>
+          //    document.getElementById('#flagImage').appendChild()
           map = L.map("map").setView(countryInfo.latlng, 5);
           L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
             maxZoom: 19,
@@ -82,7 +82,7 @@ let getRandomElements = function (sourceArray, numberElements) {
           let marker = L.marker(countryInfo.latlng).addTo(map);
           marker.bindTooltip(`Your dream destination!`).openTooltip();
 
-          map.on('click', onMapClick);
+          map.on("click", onMapClick);
         })
         .catch((error) => console.error(error));
     });
@@ -123,11 +123,11 @@ function displaySelectedCountries() {
       country = JSON.parse(country);
       console.log(country);
 
-      const li = document.createElement("li");
+      let li = document.createElement("li");
       li.innerHTML = ` <h2 id= "savedCountryName">${country.name.common}</h2>
       <img id="savedFlags" src="${country.flags.png}"/>
             `;
-      const button = document.createElement("button");
+      let button = document.createElement("button");
       button.textContent = "remove";
       button.style.fontSize = "1rem";
       button.style.cursor = "pointer";
@@ -140,7 +140,7 @@ function displaySelectedCountries() {
       ul.appendChild(li);
     });
   } else {
-    document.getElementById("favouriteList").innerHTML =
+    document.getElementById("favouriteList").in<nerHTML =
       "You have not added any countries to your bucketlist yet.";
     document.getElementById("favouriteList").style.marginTop = "2rem";
   }
