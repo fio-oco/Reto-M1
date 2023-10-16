@@ -13,12 +13,14 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap"
       rel="stylesheet"
     />
-     <!-- Make sure you put this AFTER Leaflet's CSS -->
+
  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
  crossorigin=""></script>
   </head>
   <body>
+    <div id="page-container">
+      <div id="content-wrap">
     <header class="header">
       <ul class="navbar">
         <li class="button"><a href="main-page.html">Home</a></li>
@@ -26,36 +28,39 @@
       </ul>
       </ul>
     </header>
-      <h1>My Travel Bucket List</h1>
-
+      <h1>Wanderlust</h1>
+      <ul id="savedCountriesList"></ul>
+    
 
     </header>
     <div id="letterInputDiv">
-      <input type="text" id="letterInput" name= letterInput placeholder="Let's explore! Please type in a letter to get some ideas."/>
+      <input type="text" id="letterInput" name= letterInput placeholder="Please type in a letter to get some ideas or click below!"/>
     </div>
 
     <div id="randomCountriesButton">
-      <label for="randomButton">Where could you go?</label>
-      <!-- //<input type=
+      <label for="randomButton"></label>
 
-      //<input type="select" id="randomButton" name="randomCountrysButton"/> -->
-      <button id="search">Let's find out!</button>
+      <button id="search"><br>Surprise me!</button>
     </div>
 
-    <div id="buttons"></div>
-    <div id="countryInfo"></div>
+    <div class="buttons" id="buttons"></div>
+    <div class="cardPlusMap">
+    <div class="card">
+      <div id="countryInfo"></div>
+    </div>
     <div id= "map" ></div>
-    <button id="storeCountry">Store Country</button>
+  </div>
+    <button class="buttons" id="storeCountry">Store Country</button>
 
     <footer class="footer">
       <p>
         This page was created by Asier Valtierra and Fiona O'Connell as part of
-        the Code4Jobs Fullstack Web Development bootcamp in Bilbao, September
+        the Code4Jobs Fullstack Web Development Bootcamp in Bilbao, October
         2023.
       </p>
       <div>API: <a href="https://restcountries.com/">restcountries.com</a></div>
     </footer>
-
+    </div>
     <script type="text/javascript" src="script.js"></script>
   </body>
 </html>
