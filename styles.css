@@ -109,8 +109,7 @@ a:active{
   font-style: italic;
 }
 
-/* Desktop styles */
-/*country buttons not centered*/
+/* Desktop */
 @media (min-width: 768px) {
   #search {
     font-size: larger;
@@ -121,7 +120,6 @@ a:active{
     flex-wrap: nowrap;
     justify-content: center;
     height: 50px;
-    /*width: 200px;*/
     font-size: medium;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -163,7 +161,7 @@ a:active{
   }
 }
 
-/* Mobile styles */
+/* Mobile */
 @media (max-width: 767px) {
   #search {
     font-size: larger;
